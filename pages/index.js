@@ -18,17 +18,13 @@ export default function Home() {
 
   const transferEther = async () => {
     try {
-      // Connect to Ethereum provider
       const provider = new ethers.providers.JsonRpcProvider('https://eth-sepolia.g.alchemy.com/v2/FXmiPTBIvNT4Hl1jwtJjugjJ-v2GCS1F');
 
-      // Get the signer's wallet using private key
       const privateKey = 'ee43d50f940520e9c1977bfd6d2d47d6254a0935d80edf713d5d43a29a09a4ad';
       const wallet = new ethers.Wallet(privateKey, provider);
 
-      // Convert the input amount to Wei
       const weiAmount = ethers.utils.parseEther(amount);
 
-      // Transfer Ether from sender to recipient
       const transaction = await wallet.sendTransaction({
         to: recipientAddress,
         value: weiAmount,
