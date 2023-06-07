@@ -1,0 +1,65 @@
+const [ETH, setETH] = useState(0)
+  const [reciever, setReciever] = useState("")
+  const [clicked, setClicked] = useState(false)
+  const [balance, setBalance] = useState("")
+  const [availBalance, setAvailBalance] = useState("")
+  const {account} = useMoralis()
+
+  const getBalance = async (address) => {
+    let res
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const balance = await provider.getBalance(address);
+    const newEth = BigNumber.from(ETH)
+    console.log(newEth)
+    const balanceInEth = ethers.utils.formatEther(balance);
+    // setAvailBalance(balanceInEth)
+    const newFormatteddEth = ethers.utils.formatEther(newEth);
+    console.log(balanceInEth,newFormatteddEth)
+    if(balance < newEth){
+      console.log("negative")
+    }
+    res = balance.sub(newEth)
+    
+    
+    console.log(res)
+    const remainingBalance = ethers.utils.formatEther(res);
+    console.log(remainingBalance)
+    // if(balance < ETH*1000000000000000000){
+    //   console.log(balance - ETH*1000000000000000000);
+    // }else{
+    //   console.log("Insufficient fund")
+    // }
+    
+    setBalance(remainingBalance)
+  }
+  function handleClick(){
+    setClicked(true)
+    getBalance(account)
+    
+  }
+  
+  return (
+    <>
+      <div style={{marginTop:"3%", display:"flex", flexDirection:"column",gap:"5%", justifyContent:"center"}}>
+        <ConnectButton moralisAuth={true}></ConnectButton>
+
+        <Input name='Entre the ETH amount in wei' value={""} onChange={(e)=>{setETH(e.target.value)}}></Input>
+        <Input name='Entre the address of the reciever' value={""} validation={require=true} onChange={(e)=>{setReciever(e.target.value)}}></Input>
+        <Button theme='primary' text='Send ETH' onClick={handleClick}></Button>
+        <p>Available balance: {availBalance}</p>
+        {clicked?(
+          <>
+            <p>Sending...</p>
+            <h4>Transfer amount: {ETH}</h4>
+            <h4>Reciever Address: {reciever}</h4>
+            <h4>Remaining balance: {balance}</h4>
+          </>
+          
+        ):(<>
+        </>)}
+        
+      
+      </div>
+      
+    </>
+  )
