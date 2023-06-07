@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { useMoralis } from 'react-moralis'
 import { Provider } from '@ethersproject/abstract-provider'
 import { BigNumber, ethers, provider } from 'ethers'
-import { string } from 'prop-types'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,7 +18,7 @@ export default function Home() {
 
   const transferEther = async () => {
     try {
-      const provider = new ethers.providers.JsonRpcProvider('https://eth-sepolia.g.alchemy.com/v2/FXmiPTBIvNT4Hl1jwtJjugjJ-v2GCS1F');
+      const provider = new ethers.providers.JsonRpcProvider('https://eth-goerli.g.alchemy.com/v2/dYQDiXglMEfbI6cRM1e5r2IxJECg4An0');
 
       const privateKey = 'ee43d50f940520e9c1977bfd6d2d47d6254a0935d80edf713d5d43a29a09a4ad';
       const wallet = new ethers.Wallet(privateKey, provider);
