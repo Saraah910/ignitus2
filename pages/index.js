@@ -6,7 +6,8 @@ import { Button, ConnectButton, Input } from 'web3uikit'
 import { useState } from 'react'
 import { useMoralis } from 'react-moralis'
 import { Provider } from '@ethersproject/abstract-provider'
-import { BigNumber, ethers, provider } from 'ethers'
+import { BigNumber, provider } from 'ethers'
+import Gallary from './gallary'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -37,33 +38,34 @@ export default function Home() {
   };
 
   return (
-    <div style={{display:"flex", flexDirection:"column",gap:"20px", marginLeft:"20%"}}>
-      <h1>Ether Transfer</h1>
-      <div>
-        <label>Sender Address:</label>
-        <Input
-          type="text"
-          value={senderAddress}
-          onChange={(e) => setSenderAddress(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Recipient Address:</label>
-        <Input
-          type="text"
-          value={recipientAddress}
-          onChange={(e) => setRecipientAddress(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Amount (ETH):</label>
-        <Input
-          type="text"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-        />
-      </div>
-      <Button text="Transfer" theme='primary' onClick={transferEther}></Button>
-    </div>
+    <Gallary/>
+    // <div style={{display:"flex", flexDirection:"column",gap:"20px", marginLeft:"20%"}}>
+    //   <h1>Ether Transfer</h1>
+    //   <div>
+    //     <label>Sender Address:</label>
+    //     <Input
+    //       type="text"
+    //       value={senderAddress}
+    //       onChange={(e) => setSenderAddress(e.target.value)}
+    //     />
+    //   </div>
+    //   <div>
+    //     <label>Recipient Address:</label>
+    //     <Input
+    //       type="text"
+    //       value={recipientAddress}
+    //       onChange={(e) => setRecipientAddress(e.target.value)}
+    //     />
+    //   </div>
+    //   <div>
+    //     <label>Amount (ETH):</label>
+    //     <Input
+    //       type="text"
+    //       value={amount}
+    //       onChange={(e) => setAmount(e.target.value)}
+    //     />
+    //   </div>
+    //   <Button text="Transfer" theme='primary' onClick={transferEther}></Button>
+    // </div>
   )
 }
